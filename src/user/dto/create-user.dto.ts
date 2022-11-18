@@ -1,5 +1,5 @@
-
 import { IsEmail, IsNotEmpty, IsString } from 'class-validator';
+import { CreateWalletDto } from 'src/wallet/dto/create-wallet.dto';
 
 export class CreateUserDto {
   @IsString()
@@ -8,4 +8,6 @@ export class CreateUserDto {
 
   @IsEmail()
   public email: string;
+
+  public wallet: CreateWalletDto;
 }

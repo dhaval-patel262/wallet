@@ -1,7 +1,9 @@
+import { Wallet } from 'src/wallet/entities/wallet.entity';
 import {
   Entity,
   PrimaryGeneratedColumn,
   Column,
+  OneToOne,
   CreateDateColumn,
   UpdateDateColumn,
 } from 'typeorm';
@@ -19,6 +21,9 @@ export class User {
 
   @Column({ type: 'boolean', default: false })
   public isDeleted: boolean;
+
+  @OneToOne((type) => Wallet, (wallet) => wallet.id)
+  public wallet: Wallet;
 
   /*
    * Create and Update Date Columns
