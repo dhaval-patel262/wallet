@@ -6,10 +6,11 @@ import {
   OneToOne,
   CreateDateColumn,
   UpdateDateColumn,
+  JoinColumn,
 } from 'typeorm';
 
 @Entity()
-export class User {
+export class UserEntity {
   @PrimaryGeneratedColumn()
   public id!: number;
 
@@ -23,6 +24,7 @@ export class User {
   public isDeleted: boolean;
 
   @OneToOne((type) => Wallet, (wallet) => wallet.id)
+  @JoinColumn()
   public wallet: Wallet;
 
   /*
