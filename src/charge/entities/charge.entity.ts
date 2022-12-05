@@ -1,17 +1,39 @@
-// import { Entity, PrimaryGeneratedColumn, Column, ManyToMany } from 'typeorm';
+import { Wallet } from 'src/wallet/entities/wallet.entity';
+import {
+  Entity,
+  PrimaryGeneratedColumn,
+  Column,
+  OneToOne,
+  CreateDateColumn,
+  UpdateDateColumn,
+  JoinColumn,
+} from 'typeorm';
 
-// @Entity('amenities')
-// export class Charge {
-//   @PrimaryGeneratedColumn({ type: 'bigint' })
-//   id: number;
+@Entity()
+export class Charge {
+  @PrimaryGeneratedColumn()
+  public id!: number;
 
-//   //@Index({ unique: true})
-//   @Column({ type: 'varchar', default: null })
-//   amenities: string;
+  @Column({ type: 'varchar', length: 120 })
+  public name: string;
 
-//   @Column({ type: 'varchar', default: null })
-//   quantity: string;
+  @Column({ type: 'bigint' })
+  public amount: number;
 
-//   @Column({ type: 'varchar', default: null })
-//   value: string;
-// }
+  @Column({ type: 'boolean', default: false })
+  public isDeleted: boolean;
+
+  @OneToOne((type) => Wallet, (wallet) => wallet.id)
+  @JoinColumn()
+  public wallet: Wallet;
+
+  /*
+   * Create and Update Date Columns
+   */
+
+  @CreateDateColumn({ type: 'timestamp' })
+  public createdAt!: Date;
+
+  @UpdateDateColumn({ type: 'timestamp' })
+  public updatedAt!: Date;
+}

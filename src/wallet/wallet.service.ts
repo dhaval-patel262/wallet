@@ -12,7 +12,6 @@ export class WalletService {
   public createWallet(body: CreateWalletDto): Promise<Wallet> {
     const wallet: Wallet = new Wallet();
 
-    wallet.isDeleted = body.isDeleted;
     return this.repository.save(wallet);
   }
 }

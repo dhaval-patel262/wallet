@@ -13,7 +13,7 @@ import { join } from 'path';
       port: 5432,
       username: 'postgres',
       password: 'admin',
-      database: 'postgres',
+      database: 'personal',
       entities: [join(__dirname, '**', '*.entity.{ts,js}')],
       synchronize: true,
     }),
