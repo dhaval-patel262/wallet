@@ -20,13 +20,13 @@ export class ChargeController {
     return this.chargeService.create(createChargeDto);
   }
 
-  @Get()
-  findAll() {
-    return this.chargeService.findAll();
+  @Get('wallet/:id')
+  findAll(@Param('id') id: number) {
+    return this.chargeService.findAllByUserId(id);
   }
 
   @Get(':id')
-  findOne(@Param('id') id: string) {
+  findOne(@Param('id') id: number) {
     return this.chargeService.findOne(+id);
   }
 

@@ -31,12 +31,17 @@ export class ChargeService {
     return charge;
   }
 
-  findAll() {
-    return `This action returns all charge`;
+  findAllByUserId(id: number) {
+    return this.chargeRepository.find({
+      where: { wallet: { id: id } },
+    });
   }
 
   findOne(id: number) {
-    return `This action returns a #${id} charge`;
+    return this.chargeRepository.findOne({
+      where: { id: id },
+      relations: ['wallet'],
+    });
   }
 
   update(id: number, updateChargeDto: UpdateChargeDto) {

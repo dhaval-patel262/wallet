@@ -7,6 +7,7 @@ import {
   CreateDateColumn,
   UpdateDateColumn,
   JoinColumn,
+  ManyToOne,
 } from 'typeorm';
 
 @Entity()
@@ -23,7 +24,7 @@ export class Charge {
   @Column({ type: 'boolean', default: false })
   public isDeleted: boolean;
 
-  @OneToOne((type) => Wallet, (wallet) => wallet.id)
+  @ManyToOne((type) => Wallet, (wallet) => wallet.id)
   @JoinColumn()
   public wallet: Wallet;
 
